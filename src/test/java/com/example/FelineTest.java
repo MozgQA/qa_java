@@ -1,30 +1,29 @@
 package com.example;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.verify;
 
 
 @RunWith(MockitoJUnitRunner.class)
 public class FelineTest {
+    private Feline feline;
 
-    @Spy
-    Feline feline;
+    @Before
+    public void init() {
+        feline = new Feline();
+    }
 
     @Test
-    public void eatMeat() throws Exception {
-        doReturn(List.of("Животные", "Птицы", "Рыба"))
-                .when(feline).getFood("Хищник");
-
-        assertEquals(List.of("Животные", "Птицы", "Рыба"), feline.eatMeat());
-        verify(feline).getFood("Хищник");
+    public void testEatMeat() throws Exception {
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        List<String> actualFood = feline.eatMeat();
+        assertEquals(expectedFood, actualFood);
     }
 
     @Test

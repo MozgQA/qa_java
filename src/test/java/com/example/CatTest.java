@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 
-public class CatTest{
+public class CatTest {
 
     @Mock
     private Feline feline;
@@ -27,7 +27,7 @@ public class CatTest{
     }
 
     @Test
-    public void getFood() throws Exception {
+    public void testGetFood() throws Exception {
         when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         assertEquals(List.of("Животные", "Птицы", "Рыба"), cat.getFood());
     }
