@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionTest {
-
+    private static final List<String> EXPECTED_FOOD = List.of("Животные", "Птицы", "Рыба");
     @Mock
     private Feline feline;
 
@@ -32,22 +32,33 @@ public class LionTest {
     }
 
     @Test
-    public void testGetKittens() throws Exception {
+    public void testGetKittens_returnValue() throws Exception {
         when(feline.getKittens()).thenReturn(1);
         Lion lion = new Lion("Самка", feline);
         assertEquals(1, lion.getKittens());
+    }
+
+    @Test
+    public void testGetKittens_methodCall() throws Exception {
+        when(feline.getKittens()).thenReturn(1);
+        Lion lion = new Lion("Самка", feline);
+        lion.getKittens();
         verify(feline, times(1)).getKittens();
     }
 
     @Test
-    public void testGetFood() throws Exception {
-        List<String> expectedFood = List.of("Мясо", "Рыба");
-        when(feline.getFood("Хищник")).thenReturn(expectedFood);
+    public void testGetFood_returnValue() throws Exception {
+        when(feline.getFood("Хищник")).thenReturn(EXPECTED_FOOD);
         Lion lion = new Lion("Самец", feline);
-
         List<String> actualFood = lion.getFood();
+        assertEquals(EXPECTED_FOOD, actualFood);
+    }
 
-        assertEquals(expectedFood, actualFood);
+    @Test
+    public void testGetFood_methodCall() throws Exception {
+        when(feline.getFood("Хищник")).thenReturn(EXPECTED_FOOD);
+        Lion lion = new Lion("Самец", feline);
+        lion.getFood();
         verify(feline, times(1)).getFood("Хищник");
     }
 }

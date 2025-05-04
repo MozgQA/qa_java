@@ -23,12 +23,6 @@
 hs_err_pid*
 
 # Project exclude paths
-/target/classes
-/target/generated-sources
-/target/maven-archiver
-/target/maven-status
-/target/surefire-reports
-/target/test-classes
-/target/jacoco.exec
-/target/untitled-1.0-SNAPSHOT.jar
-/target/site/jacoco/jacoco-resources
+/target/
+!target/site/
+
